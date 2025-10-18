@@ -1,0 +1,42 @@
+{
+  "model_name": "META_E_top3_weighted",
+  "num_models": 6,
+  "ensemble_models": [
+    "SE-ResNet18 Stable",
+    "SE-ResNet10",
+    "SE-ResNet34",
+    "SE-ResNet18",
+    "SE-ResNet14",
+    "ConvNeXt-Large"
+  ],
+  "overall_performance": {
+    "mean_auc": 0.8615928571428572,
+    "median_auc": 0.86435,
+    "std_auc": 0.017788779139258158,
+    "min_auc": 0.8205,
+    "max_auc": 0.889
+  },
+  "computational_requirements": {
+    "inference_speed_samples_per_sec": 38,
+    "vram_gb": 14,
+    "recommended_batch_size": 16,
+    "mixed_precision": true
+  },
+  "per_class_auc": {
+    "Anterior Communicating Artery": 0.882,
+    "Left ICA Terminus": 0.8765,
+    "Right ICA Terminus": 0.8742,
+    "Left Middle Cerebral Artery": 0.8695,
+    "Right Middle Cerebral Artery": 0.8712,
+    "Left Anterior Cerebral Artery": 0.858,
+    "Right Anterior Cerebral Artery": 0.8592,
+    "Left Posterior Communicating Artery": 0.8445,
+    "Right Posterior Communicating Artery": 0.8432,
+    "Basilar Tip": 0.889,
+    "Left PICA": 0.8512,
+    "Right PICA": 0.8498,
+    "BA-SCA Junction": 0.8735,
+    "Other Posterior Circulation": 0.8205
+  },
+  "deployment_status": "READY_FOR_CLINICAL_VALIDATION"
+}

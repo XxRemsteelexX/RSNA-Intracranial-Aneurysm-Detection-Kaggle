@@ -1,0 +1,295 @@
+# =============================================================================
+# RSNA 2025 Intracranial Aneurysm Detection - Git Ignore Rules
+# Author: Glenn Dalbey
+# Date: 2025-10-17
+# =============================================================================
+
+# =============================================================================
+# PYTHON
+# =============================================================================
+
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# =============================================================================
+# VIRTUAL ENVIRONMENTS
+# =============================================================================
+
+venv/
+env/
+ENV/
+.venv/
+conda_env/
+rsna_kaggle/
+
+# =============================================================================
+# JUPYTER NOTEBOOKS
+# =============================================================================
+
+.ipynb_checkpoints/
+*.ipynb_checkpoints/
+*/.ipynb_checkpoints/*
+
+# Claude Code settings
+.claude/
+*/.claude/*
+
+# Keep notebooks but ignore checkpoints
+!notebooks/*.ipynb
+
+# =============================================================================
+# PYTORCH & DEEP LEARNING
+# =============================================================================
+
+# Model checkpoints (too large for Git)
+*.pth
+*.pt
+*.ckpt
+*.safetensors
+*.onnx
+*.tflite
+*.pb
+
+# Training state
+*.tar
+
+# =============================================================================
+# DATA FILES (TOO LARGE FOR GIT)
+# =============================================================================
+
+# Raw data directories
+data/raw/
+data/train_images/
+data/test_images/
+data/volumes_nifti/
+data/patches_roi/
+data/preprocessed/
+
+# Large array files
+*.h5
+*.hdf5
+*.npy
+*.npz
+*.pkl
+*.pickle
+
+# Medical imaging formats
+*.dcm
+*.dicom
+*.nii
+*.nii.gz
+
+# Compressed archives
+*.zip
+*.tar
+*.tar.gz
+*.tar.bz2
+*.rar
+*.7z
+
+# =============================================================================
+# MODEL OUTPUTS & CHECKPOINTS
+# =============================================================================
+
+models/
+checkpoints/
+saved_models/
+weights/
+pretrained/
+
+# Keep directory structure with .gitkeep
+!models/.gitkeep
+!checkpoints/.gitkeep
+
+# =============================================================================
+# LOGS & MONITORING
+# =============================================================================
+
+logs/
+*.log
+runs/
+tensorboard/
+wandb/
+mlruns/
+
+# Keep logs directory structure
+!logs/.gitkeep
+
+# =============================================================================
+# RESULTS & PREDICTIONS
+# =============================================================================
+
+results/
+predictions/
+submissions/
+*.csv
+!data/train_labels_14class.csv
+!data/cv_splits/*.csv
+
+# Keep results directory structure
+!results/.gitkeep
+
+# =============================================================================
+# IDE & EDITOR
+# =============================================================================
+
+# VSCode
+.vscode/
+*.code-workspace
+
+# PyCharm
+.idea/
+*.iml
+
+# Vim
+*.swp
+*.swo
+*~
+
+# Emacs
+*~
+\#*\#
+.\#*
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# =============================================================================
+# OPERATING SYSTEM
+# =============================================================================
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+*.stackdump
+desktop.ini
+
+# Linux
+.directory
+.Trash-*
+
+# =============================================================================
+# KAGGLE API
+# =============================================================================
+
+kaggle.json
+.kaggle/
+
+# =============================================================================
+# TEMPORARY FILES
+# =============================================================================
+
+tmp/
+temp/
+*.tmp
+*.bak
+*.swp
+*.cache
+
+# =============================================================================
+# LATEX (for paper writing)
+# =============================================================================
+
+*.aux
+*.bbl
+*.blg
+*.log
+*.out
+*.toc
+*.synctex.gz
+
+# =============================================================================
+# TESTING & COVERAGE
+# =============================================================================
+
+.pytest_cache/
+.coverage
+htmlcov/
+*.cover
+.hypothesis/
+.tox/
+
+# =============================================================================
+# DOCUMENTATION BUILD
+# =============================================================================
+
+docs/_build/
+docs/_static/
+docs/_templates/
+site/
+
+# =============================================================================
+# CONFIGURATION FILES (KEEP TEMPLATES)
+# =============================================================================
+
+# Ignore user-specific configs but keep templates
+config_local.yaml
+*_local.yaml
+secrets.yaml
+
+# Keep template configs
+!config_template.yaml
+!*_template.yaml
+
+# =============================================================================
+# OLD VERSIONS & ARCHIVE
+# =============================================================================
+
+scripts/old_versions/
+
+# =============================================================================
+# LARGE MODEL DATABASES
+# =============================================================================
+
+# Ignore compiled model databases but keep markdown
+*.db
+*.sqlite
+*.sqlite3
+
+# Keep markdown documentation
+!docs/*.md
+!*.md
+
+# =============================================================================
+# KEEP DIRECTORY STRUCTURE
+# =============================================================================
+
+# Ensure empty directories are tracked
+!data/.gitkeep
+!models/.gitkeep
+!logs/.gitkeep
+!results/.gitkeep
+!figures/.gitkeep
+
+# =============================================================================
+# END OF .gitignore
+# =============================================================================
