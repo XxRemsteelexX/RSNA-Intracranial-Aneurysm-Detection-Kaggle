@@ -16,8 +16,8 @@ Comprehensive 3D deep learning solution for detecting and localizing intracrania
 
 ```bash
 # Clone repository
-git clone https://github.com/yourusername/rsna-aneurysm-detection.git
-cd rsna-aneurysm-detection
+git clone https://github.com/XxRemsteelexX/RSNA-Intracranial-Aneurysm-Detection-Kaggle.git
+cd RSNA-Intracranial-Aneurysm-Detection-Kaggle
 
 # Setup environment
 conda create -n rsna_kaggle python=3.11
@@ -598,7 +598,7 @@ If you use this code or findings in your research, please cite:
   author={Dalbey, Glenn},
   year={2025},
   publisher={GitHub},
-  url={https://github.com/yourusername/rsna-aneurysm-detection},
+  url={https://github.com/XxRemsteelexX/RSNA-Intracranial-Aneurysm-Detection-Kaggle},
   note={Best AUC: 0.8624 (ensemble), 0.8585 (single model)}
 }
 ```
@@ -625,9 +625,8 @@ The key finding—that smaller models significantly outperform larger ones on li
 ## Contact
 
 - **Author**: Glenn Dalbey
-- **GitHub**: [@yourusername](https://github.com/yourusername)
-- **Kaggle**: [Your Profile](https://www.kaggle.com/yourusername)
-- **Email**: your.email@example.com
+- **GitHub**: [@XxRemsteelexX](https://github.com/XxRemsteelexX)
+- **Email**: dalbeyglenn@gmail.com
 
 ## Documentation
 
