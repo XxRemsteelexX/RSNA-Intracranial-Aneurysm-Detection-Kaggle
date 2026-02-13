@@ -1,9 +1,9 @@
 # Complete Ensemble Experiments Documentation
 ## RSNA Intracranial Aneurysm Detection Challenge
 
-**Date:** 2025-10-17  
-**Total Ensembles Tested:** 51  
-**Total Individual Models Available:** 65 (45 five-fold + 21 original fold 0)  
+**Date:** 2025-10-17 
+**Total Ensembles Tested:** 51 
+**Total Individual Models Available:** 65 (45 five-fold + 21 original fold 0) 
 **Best Architecture Family:** SE-ResNet
 
 ---
@@ -19,25 +19,25 @@ After testing 51 different ensemble configurations, we achieved:
 ### Top 3 Production-Ready Ensembles
 
 1. **META_E_top3_weighted** (RECOMMENDED)
-   - AUC (macro): **0.8624**
-   - AUC (aneurysm): 0.8249
-   - Models: 6 SE-ResNet
-   - Method: Weighted mean
-   - **Most robust option**
+ - AUC (macro): **0.8624**
+ - AUC (aneurysm): 0.8249
+ - Models: 6 SE-ResNet
+ - Method: Weighted mean
+ - **Most robust option**
 
 2. **E5_005_seresnet5**
-   - AUC (macro): **0.8624**
-   - AUC (aneurysm): **0.8269**
-   - Models: 5 SE-ResNet
-   - Method: Simple mean
-   - **Simplest high-performer**
+ - AUC (macro): **0.8624**
+ - AUC (aneurysm): **0.8269**
+ - Models: 5 SE-ResNet
+ - Method: Simple mean
+ - **Simplest high-performer**
 
 3. **E3_004_seresnet_only**
-   - AUC (macro): **0.8619**
-   - AUC (aneurysm): 0.8248
-   - Models: 3 SE-ResNet
-   - Method: Simple mean
-   - **Fastest inference**
+ - AUC (macro): **0.8619**
+ - AUC (aneurysm): 0.8248
+ - Models: 3 SE-ResNet
+ - Method: Simple mean
+ - **Fastest inference**
 
 ---
 
@@ -220,7 +220,7 @@ Model List with Weights:
 
 Weight Rationale:
 - Models in all 3 top ensembles get highest weight
-- Models in 2 ensembles get medium weight  
+- Models in 2 ensembles get medium weight 
 - Models in 1 ensemble get lowest weight
 ```
 
@@ -278,7 +278,7 @@ Model List:
 
 **Performance:**
 - AUC (macro): 0.8619
-- AUC (aneurysm): **0.8298** ← HIGHEST
+- AUC (aneurysm): **0.8298** <- HIGHEST
 
 **Advantage:**
 - Best for detecting aneurysm presence (primary task)
@@ -291,7 +291,7 @@ Model List:
 Best performers by absolute model ranking
 
 - E3_001_top3: Top 3 overall
-- E5_001_top5: Top 5 overall  
+- E5_001_top5: Top 5 overall 
 - E8_001_top8: Top 8 overall
 - E9_001_top9: Top 9 overall
 - E10_001_top10: Top 10 overall
@@ -304,7 +304,7 @@ Single architecture family ensembles
 
 **SE-ResNet family (best):**
 - E3_004_seresnet_only: 0.8619
-- E5_005_seresnet5: 0.8624 ← BEST OVERALL
+- E5_005_seresnet5: 0.8624 <- BEST OVERALL
 - FIXED_E5_003_seresnet_alt1: 0.8619
 - FIXED_E5_004_seresnet_alt2: 0.8615
 
@@ -345,7 +345,7 @@ AUC-weighted averaging
 Test-time augmentation
 
 - ETTA_001_top5_tta4: 0.8616 (TTA=4)
-- ETTA_002_top5_tta8: 0.8122 (TTA=8) ← FAILED
+- ETTA_002_top5_tta8: 0.8122 (TTA=8) <- FAILED
 - ETTA_003_top10_tta4: 0.8618 (TTA=4)
 
 **Result:** TTA=4 marginal, TTA=8 catastrophic
@@ -364,7 +364,7 @@ Many models
 Ensemble of ensembles
 
 - META_E_top3_ensembles: 0.8619 (mean)
-- META_E_top3_weighted: 0.8624 (weighted) ← RANK #2
+- META_E_top3_weighted: 0.8624 (weighted) <- RANK #2
 
 **Result:** Excellent performance, more robust
 
@@ -423,19 +423,19 @@ Ensemble of ensembles
 ```bash
 # 6 models, weighted ensemble
 python scripts/ensemble_inference.py \
-  --config-id META_E_top3_weighted \
-  --method weighted \
-  --models \
-    models/fold0_seresnet10_p64/best_model.pth \
-    models/fold0_seresnet34_p64/best_model.pth \
-    models/fold0_seresnet18_stable_bs12_lr0005/best_model.pth \
-    models/fold1_seresnet34_p64/best_model.pth \
-    models/fold1_seresnet18_p64/best_model.pth \
-    models/fold3_seresnet18_p64/best_model.pth \
-  --weights 2.5862 2.5862 1.7243 1.7243 1.7243 0.8619 \
-  --val-dir <input_dir> \
-  --val-csv <labels_csv> \
-  --output predictions.csv
+ --config-id META_E_top3_weighted \
+ --method weighted \
+ --models \
+ models/fold0_seresnet10_p64/best_model.pth \
+ models/fold0_seresnet34_p64/best_model.pth \
+ models/fold0_seresnet18_stable_bs12_lr0005/best_model.pth \
+ models/fold1_seresnet34_p64/best_model.pth \
+ models/fold1_seresnet18_p64/best_model.pth \
+ models/fold3_seresnet18_p64/best_model.pth \
+ --weights 2.5862 2.5862 1.7243 1.7243 1.7243 0.8619 \
+ --val-dir <input_dir> \
+ --val-csv <labels_csv> \
+ --output predictions.csv
 ```
 
 **Advantages:**
@@ -449,17 +449,17 @@ python scripts/ensemble_inference.py \
 ```bash
 # 5 models, simple mean
 python scripts/ensemble_inference.py \
-  --config-id E5_005_seresnet5 \
-  --method mean \
-  --models \
-    models/fold0_seresnet10_p64/best_model.pth \
-    models/fold0_seresnet34_p64/best_model.pth \
-    models/fold0_seresnet18_stable_bs12_lr0005/best_model.pth \
-    models/fold1_seresnet34_p64/best_model.pth \
-    models/fold1_seresnet18_p64/best_model.pth \
-  --val-dir <input_dir> \
-  --val-csv <labels_csv> \
-  --output predictions.csv
+ --config-id E5_005_seresnet5 \
+ --method mean \
+ --models \
+ models/fold0_seresnet10_p64/best_model.pth \
+ models/fold0_seresnet34_p64/best_model.pth \
+ models/fold0_seresnet18_stable_bs12_lr0005/best_model.pth \
+ models/fold1_seresnet34_p64/best_model.pth \
+ models/fold1_seresnet18_p64/best_model.pth \
+ --val-dir <input_dir> \
+ --val-csv <labels_csv> \
+ --output predictions.csv
 ```
 
 **Advantages:**
@@ -474,15 +474,15 @@ python scripts/ensemble_inference.py \
 ```bash
 # 3 models, simple mean
 python scripts/ensemble_inference.py \
-  --config-id E3_004_seresnet_only \
-  --method mean \
-  --models \
-    models/fold0_seresnet10_p64/best_model.pth \
-    models/fold0_seresnet34_p64/best_model.pth \
-    models/fold0_seresnet18_stable_bs12_lr0005/best_model.pth \
-  --val-dir <input_dir> \
-  --val-csv <labels_csv> \
-  --output predictions.csv
+ --config-id E3_004_seresnet_only \
+ --method mean \
+ --models \
+ models/fold0_seresnet10_p64/best_model.pth \
+ models/fold0_seresnet34_p64/best_model.pth \
+ models/fold0_seresnet18_stable_bs12_lr0005/best_model.pth \
+ --val-dir <input_dir> \
+ --val-csv <labels_csv> \
+ --output predictions.csv
 ```
 
 **Advantages:**
@@ -497,17 +497,17 @@ python scripts/ensemble_inference.py \
 ```bash
 # 5 models optimized for aneurysm detection
 python scripts/ensemble_inference.py \
-  --config-id FIXED_E5_003_seresnet_alt1 \
-  --method mean \
-  --models \
-    models/fold0_seresnet10_p64/best_model.pth \
-    models/fold0_seresnet34_p64/best_model.pth \
-    models/fold1_seresnet34_p64/best_model.pth \
-    models/fold1_seresnet18_p64/best_model.pth \
-    models/fold3_seresnet18_p64/best_model.pth \
-  --val-dir <input_dir> \
-  --val-csv <labels_csv> \
-  --output predictions.csv
+ --config-id FIXED_E5_003_seresnet_alt1 \
+ --method mean \
+ --models \
+ models/fold0_seresnet10_p64/best_model.pth \
+ models/fold0_seresnet34_p64/best_model.pth \
+ models/fold1_seresnet34_p64/best_model.pth \
+ models/fold1_seresnet18_p64/best_model.pth \
+ models/fold3_seresnet18_p64/best_model.pth \
+ --val-dir <input_dir> \
+ --val-csv <labels_csv> \
+ --output predictions.csv
 ```
 
 **Advantages:**
@@ -528,7 +528,7 @@ python scripts/ensemble_inference.py \
 | 6 | ~38 | ~26 seconds |
 | 10 | ~35 | ~29 seconds |
 
-**Note:** Measured on 64³ patches, batch size 32
+**Note:** Measured on 64^3 patches, batch size 32
 
 ### Memory Requirements
 
@@ -545,64 +545,64 @@ python scripts/ensemble_inference.py \
 ### What Worked
 
 1. **SE-ResNet architecture is superior**
-   - Consistently outperformed all other architectures
-   - 100% of top 10 ensembles use SE-ResNet exclusively
-   
+ - Consistently outperformed all other architectures
+ - 100% of top 10 ensembles use SE-ResNet exclusively
+ 
 2. **Small ensembles are optimal**
-   - 5-6 models hit the sweet spot
-   - More models = diminishing returns + slower inference
-   
+ - 5-6 models hit the sweet spot
+ - More models = diminishing returns + slower inference
+ 
 3. **Simple mean is sufficient**
-   - Weighted averaging provides minimal benefit (<0.05%)
-   - Exception: Meta-ensembling benefits from weighting
-   
+ - Weighted averaging provides minimal benefit (<0.05%)
+ - Exception: Meta-ensembling benefits from weighting
+ 
 4. **Meta-ensembling works**
-   - Combining top ensembles achieved tied-best performance
-   - Provides additional robustness
-   
+ - Combining top ensembles achieved tied-best performance
+ - Provides additional robustness
+ 
 5. **Cross-fold diversity helps**
-   - Using models from different folds improves generalization
-   - Same architecture, different folds > different architectures
+ - Using models from different folds improves generalization
+ - Same architecture, different folds > different architectures
 
 ### What Didn't Work
 
 1. **Large ensembles underperform**
-   - 65 models: 0.8582 AUC
-   - 5 models: 0.8624 AUC
-   - **Worse by 0.4%**
-   
+ - 65 models: 0.8582 AUC
+ - 5 models: 0.8624 AUC
+ - **Worse by 0.4%**
+ 
 2. **Architecture diversity hurts**
-   - Max diversity ensemble: 0.8533
-   - SE-ResNet only: 0.8624
-   - **Worse by 0.9%**
-   
+ - Max diversity ensemble: 0.8533
+ - SE-ResNet only: 0.8624
+ - **Worse by 0.9%**
+ 
 3. **TTA is not worth it**
-   - TTA=4: +0.0006 improvement (0.07%)
-   - TTA=8: -0.04 degradation (catastrophic)
-   - 4-8x slower inference for minimal/negative gain
-   
+ - TTA=4: +0.0006 improvement (0.07%)
+ - TTA=8: -0.04 degradation (catastrophic)
+ - 4-8x slower inference for minimal/negative gain
+ 
 4. **Weighted averaging complexity**
-   - Added complexity for <0.05% improvement
-   - Not worth it except for meta-ensembles
+ - Added complexity for <0.05% improvement
+ - Not worth it except for meta-ensembles
 
 ### Surprising Findings
 
 1. **More models actually hurt**
-   - Expected: more models = better performance
-   - Reality: performance peaked at 5-6 models
-   
+ - Expected: more models = better performance
+ - Reality: performance peaked at 5-6 models
+ 
 2. **MobileNetV4 individually strong but ensemble weak**
-   - Individual: 2nd best architecture (0.8480)
-   - Ensemble: underperformed SE-ResNet significantly
-   
+ - Individual: 2nd best architecture (0.8480)
+ - Ensemble: underperformed SE-ResNet significantly
+ 
 3. **TTA=8 catastrophic failure**
-   - Expected: more augmentation = better
-   - Reality: severe overfitting, AUC dropped to 0.812
-   
+ - Expected: more augmentation = better
+ - Reality: severe overfitting, AUC dropped to 0.812
+ 
 4. **Meta-ensembling effectiveness**
-   - Combining 3 ensembles into 6 unique models
-   - Achieved same performance as 5-model ensemble
-   - Suggests ensemble diversity > model count
+ - Combining 3 ensembles into 6 unique models
+ - Achieved same performance as 5-model ensemble
+ - Suggests ensemble diversity > model count
 
 ---
 
@@ -610,33 +610,33 @@ python scripts/ensemble_inference.py \
 
 ```
 workspace/
-├── ENSEMBLE_EXPERIMENTS_COMPLETE.md          # This file
-├── ENSEMBLE_SUMMARY.txt                      # Quick results
-├── ALL_MODELS_AUC_COMPARISON.txt            # Individual model rankings
-├── ENSEMBLE_MODELS_ABOVE_83.txt             # High-performing models list
-├── FINAL_ENSEMBLE_66_MODELS.txt             # All available models
-├── massive_ensemble_configs.json            # Configuration definitions
-│
-├── ensemble_scripts/                         # 51 ensemble scripts
-│   ├── E3_*.sh                              # 3-model ensembles
-│   ├── E5_*.sh                              # 5-model ensembles
-│   ├── E8_*.sh                              # 8-model ensembles
-│   ├── E10_*.sh                             # 10-model ensembles
-│   ├── FIXED_E5_*.sh                        # Corrected ensembles
-│   ├── META_E_*.sh                          # Meta-ensembles
-│   └── ETTA_*.sh                            # TTA experiments
-│
-├── results/                                  # Results
-│   ├── ensemble_*.csv                       # Predictions
-│   └── ensemble_*.log                       # Metrics (JSON)
-│
-├── logs/                                     # Execution logs
-│   └── ensemble_*.out                       # Stdout/stderr
-│
-└── scripts/
-    ├── ensemble_inference.py                # Main inference script
-    ├── train_eric3d_optimized.py           # Model definitions
-    └── generate_massive_ensemble_configs.py # Config generator
++-- ENSEMBLE_EXPERIMENTS_COMPLETE.md # This file
++-- ENSEMBLE_SUMMARY.txt # Quick results
++-- ALL_MODELS_AUC_COMPARISON.txt # Individual model rankings
++-- ENSEMBLE_MODELS_ABOVE_83.txt # High-performing models list
++-- FINAL_ENSEMBLE_66_MODELS.txt # All available models
++-- massive_ensemble_configs.json # Configuration definitions
+|
++-- ensemble_scripts/ # 51 ensemble scripts
+| +-- E3_*.sh # 3-model ensembles
+| +-- E5_*.sh # 5-model ensembles
+| +-- E8_*.sh # 8-model ensembles
+| +-- E10_*.sh # 10-model ensembles
+| +-- FIXED_E5_*.sh # Corrected ensembles
+| +-- META_E_*.sh # Meta-ensembles
+| +-- ETTA_*.sh # TTA experiments
+|
++-- results/ # Results
+| +-- ensemble_*.csv # Predictions
+| +-- ensemble_*.log # Metrics (JSON)
+|
++-- logs/ # Execution logs
+| +-- ensemble_*.out # Stdout/stderr
+|
++-- scripts/
+ +-- ensemble_inference.py # Main inference script
+ +-- train_eric3d_optimized.py # Model definitions
+ +-- generate_massive_ensemble_configs.py # Config generator
 ```
 
 ---
@@ -655,7 +655,7 @@ All models trained with fixed seeds for reproducibility
 ### Data
 - Training samples: 4,348
 - Validation samples: 4,026 patches (from 5-fold CV)
-- Patch size: 64³ voxels
+- Patch size: 64^3 voxels
 - Format: HDF5 (.h5)
 
 ### Recreating Results
@@ -687,32 +687,32 @@ python analyze_ensemble_results.py
 ### Potential Improvements
 
 1. **Stacking meta-learners**
-   - Currently only tested mean/weighted averaging
-   - Could try Ridge, XGBoost on ensemble predictions
-   - Research suggests +2-3% improvement possible
+ - Currently only tested mean/weighted averaging
+ - Could try Ridge, XGBoost on ensemble predictions
+ - Research suggests +2-3% improvement possible
 
 2. **Calibration**
-   - Post-hoc calibration (temperature scaling, isotonic)
-   - May improve probability estimates
+ - Post-hoc calibration (temperature scaling, isotonic)
+ - May improve probability estimates
 
 3. **Architecture search within SE-ResNet**
-   - Test SE-ResNet50, SE-ResNet101
-   - Different SE reduction ratios
+ - Test SE-ResNet50, SE-ResNet101
+ - Different SE reduction ratios
 
 4. **Pseudo-labeling**
-   - Use ensemble to label additional unlabeled data
-   - Retrain with expanded dataset
+ - Use ensemble to label additional unlabeled data
+ - Retrain with expanded dataset
 
 5. **Multi-scale ensembles**
-   - Combine different patch sizes (32³, 64³, 128³)
-   - May capture features at different scales
+ - Combine different patch sizes (32^3, 64^3, 128^3)
+ - May capture features at different scales
 
 ### Not Recommended
 
-1. ❌ Adding more models (diminishing returns)
-2. ❌ Increasing architectural diversity (hurts performance)
-3. ❌ TTA beyond 4 augmentations (not cost-effective)
-4. ❌ Complex weighted averaging (minimal benefit)
+1. SKIP Adding more models (diminishing returns)
+2. SKIP Increasing architectural diversity (hurts performance)
+3. SKIP TTA beyond 4 augmentations (not cost-effective)
+4. SKIP Complex weighted averaging (minimal benefit)
 
 ---
 
@@ -722,10 +722,10 @@ If using these results, please cite:
 
 ```bibtex
 @misc{rsna_ensemble_experiments_2025,
-  title={Comprehensive Ensemble Experiments for Intracranial Aneurysm Detection},
-  author={RSNA Challenge Team},
-  year={2025},
-  note={51 ensemble configurations tested, SE-ResNet optimal}
+ title={Comprehensive Ensemble Experiments for Intracranial Aneurysm Detection},
+ author={RSNA Challenge Team},
+ year={2025},
+ note={51 ensemble configurations tested, SE-ResNet optimal}
 }
 ```
 
@@ -739,8 +739,8 @@ See individual log files in `results/ensemble_*.log` for per-class AUC scores.
 
 ---
 
-**Document Version:** 1.0  
-**Last Updated:** 2025-10-17  
-**Total Experiments:** 51 ensembles  
-**Best AUC:** 0.8624  
+**Document Version:** 1.0 
+**Last Updated:** 2025-10-17 
+**Total Experiments:** 51 ensembles 
+**Best AUC:** 0.8624 
 **Recommended:** META_E_top3_weighted

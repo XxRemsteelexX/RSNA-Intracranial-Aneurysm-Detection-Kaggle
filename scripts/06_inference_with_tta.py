@@ -317,7 +317,7 @@ def load_model(arch, checkpoint_path, device, num_classes=14):
     model = model.to(device)
     model.eval()
 
-    print(f"✓ Loaded {arch} model from {checkpoint_path}")
+    print(f"- Loaded {arch} model from {checkpoint_path}")
     return model
 
 

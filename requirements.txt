@@ -131,7 +131,7 @@ albumentations>=1.4.0
 # - CUDA: 12.8
 # - cuDNN: 9.3.0
 # - OS: Ubuntu 22.04 LTS
-# - Hardware: 2× NVIDIA RTX 5090 (32GB VRAM each)
+# - Hardware: 2x NVIDIA RTX 5090 (32GB VRAM each)
 #
 # Minimum Requirements:
 # - Python >= 3.10

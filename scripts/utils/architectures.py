@@ -141,7 +141,7 @@ class SEResBlock3D(nn.Module):
     """
     SE-ResNet block with Squeeze-and-Excitation.
 
-    SE mechanism: Global pooling → FC → Sigmoid → Scale channels
+    SE mechanism: Global pooling -> FC -> Sigmoid -> Scale channels
     Provides channel-wise attention (+8.7% AUC improvement over standard ResNet)
     """
 

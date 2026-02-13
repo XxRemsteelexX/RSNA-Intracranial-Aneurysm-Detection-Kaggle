@@ -22,8 +22,8 @@ Statistical Considerations:
 --------------------------
 - Sample size per fold: ~3,478 train / ~870 val (80/20 split per fold)
 - Sufficient for 14-class multi-label learning
-- Power analysis: N=870 validation samples provides 95% CI width of ±3.3%
-  for AUC estimation (assuming AUC~0.85, α=0.05)
+- Power analysis: N=870 validation samples provides 95% CI width of +/-3.3%
+  for AUC estimation (assuming AUC~0.85, alpha=0.05)
 
 Reproducibility:
 ---------------
@@ -228,10 +228,10 @@ def compute_cv_statistics(fold_stats: List[Dict], logger: logging.Logger) -> Dic
 
     logger.info("")
     logger.info("Cross-Validation Statistics:")
-    logger.info(f"  Train size: {cv_stats['train_size_mean']:.0f} ± {cv_stats['train_size_std']:.1f}")
-    logger.info(f"  Val size:   {cv_stats['val_size_mean']:.0f} ± {cv_stats['val_size_std']:.1f}")
-    logger.info(f"  Train pos rate: {cv_stats['train_pos_rate_mean']:.4f} ± {cv_stats['train_pos_rate_std']:.4f}")
-    logger.info(f"  Val pos rate:   {cv_stats['val_pos_rate_mean']:.4f} ± {cv_stats['val_pos_rate_std']:.4f}")
+    logger.info(f"  Train size: {cv_stats['train_size_mean']:.0f} +/- {cv_stats['train_size_std']:.1f}")
+    logger.info(f"  Val size:   {cv_stats['val_size_mean']:.0f} +/- {cv_stats['val_size_std']:.1f}")
+    logger.info(f"  Train pos rate: {cv_stats['train_pos_rate_mean']:.4f} +/- {cv_stats['train_pos_rate_std']:.4f}")
+    logger.info(f"  Val pos rate:   {cv_stats['val_pos_rate_mean']:.4f} +/- {cv_stats['val_pos_rate_std']:.4f}")
 
     # Check if standard deviations are acceptably small
     if cv_stats['train_pos_rate_std'] > 0.01:

@@ -8,7 +8,7 @@ Comprehensive 3D deep learning solution for detecting and localizing intracrania
 
 - **Best Single Model**: SE-ResNet18 Stable (AUC: 0.8585)
 - **Best Ensemble**: META_E_top3_weighted (AUC: 0.8624)
-- **Total Models Trained**: 105 models (21 architectures × 5 folds)
+- **Total Models Trained**: 105 models (21 architectures x 5 folds)
 - **Ensemble Configurations Tested**: 51
 - **Key Finding**: Smaller models outperform larger ones on limited data
 
@@ -55,16 +55,16 @@ Detect and localize intracranial aneurysms across 13 anatomical locations in 3D 
 - **Total Scans**: 4,348 CT angiography volumes
 - **Training Set**: 3,478 samples per fold (5-fold stratified CV)
 - **Validation Set**: 870 samples per fold
-- **Patch Size**: 64×64×64 voxels (32mm³ at 0.5mm spacing)
+- **Patch Size**: 64x64x64 voxels (32mm^3 at 0.5mm spacing)
 - **Positive Rate**: 42.8% (aneurysm present)
 - **Class Imbalance**: Highly imbalanced across anatomical locations
 
 ### Approach
 
 **1. Data Preprocessing**
-- DICOM → NIfTI conversion with spatial metadata preservation
+- DICOM -> NIfTI conversion with spatial metadata preservation
 - HU windowing [-100, 300] for CTA visualization
-- ROI extraction: 64³ patches centered on brain tissue
+- ROI extraction: 64^3 patches centered on brain tissue
 - Z-score normalization
 
 **2. Model Architecture**
@@ -95,7 +95,7 @@ Detect and localize intracranial aneurysms across 13 anatomical locations in 3D 
 |------|-------|-----|------------|-------|
 | 1 | **SE-ResNet18 Stable** | **0.8585** | 12 | LR=0.0005, patience=15 |
 | 2 | SE-ResNet18 | 0.8551 | 8 | Original configuration |
-| 3 | ConvNeXt-Large fine-tuned | 0.8540 | 2 | Frozen → fine-tuned |
+| 3 | ConvNeXt-Large fine-tuned | 0.8540 | 2 | Frozen -> fine-tuned |
 | 4 | SE-ResNet34 | 0.8538 | 8 | |
 | 5 | SE-ResNet50 | 0.8528 | 4 | |
 | 6 | DenseNet-121 | 0.8514 | 8 | Full training |
@@ -124,7 +124,7 @@ Detect and localize intracranial aneurysms across 13 anatomical locations in 3D 
 - EfficientNet-B0 (0.8492) > B2 (0.8472) > B4 (0.8428)
 - ResNet-18 (0.8498) > ResNet-34 (0.8365)
 
-**Reason**: ~4,000 training samples insufficient for large models → overfitting
+**Reason**: ~4,000 training samples insufficient for large models -> overfitting
 
 #### 2. SE Blocks Critical for Medical Imaging
 
@@ -159,66 +159,66 @@ Detect and localize intracranial aneurysms across 13 anatomical locations in 3D 
 
 ```
 rsna_github/
-├── README.md                                 # This file
-├── PROGRESS_STATUS.md                        # Development tracking
-├── requirements.txt                          # Python dependencies
-├── .gitignore                               # Git ignore rules
-│
-├── scripts/                                  # Sequential pipeline scripts
-│   ├── 01_dicom_to_volume.py                # DICOM → NIfTI conversion
-│   ├── 02_create_roi_patches.py             # Extract 64³ ROI patches
-│   ├── 03_create_cv_splits.py               # Generate 5-fold CV splits
-│   ├── 04_train_model.py                    # Main training script (21 architectures)
-│   ├── 05_ensemble_inference.py             # Ensemble prediction
-│   ├── 06_inference_with_tta.py             # Test-time augmentation
-│   ├── 07_run_full_pipeline.sh              # Full pipeline automation
-│   │
-│   └── utils/                                # Modular utilities
-│       ├── architectures.py                  # Model definitions
-│       ├── data_loading.py                   # Dataset & augmentation
-│       └── metrics.py                        # Training & evaluation
-│
-├── notebooks/                                # Jupyter analysis notebooks
-│   ├── 01_data_exploration_and_eda.ipynb
-│   ├── 02_preprocessing_and_roi_extraction.ipynb
-│   ├── 03_architecture_selection_rationale.ipynb
-│   ├── 04_training_results_analysis.ipynb
-│   ├── 05_ensemble_strategy_design.ipynb
-│   └── 06_ensemble_evaluation_results.ipynb
-│
-├── docs/                                     # Comprehensive documentation
-│   ├── MODEL_DATABASE.md                     # All 105 model results
-│   ├── ENSEMBLE_RESULTS.md                   # 51 ensemble experiments
-│   ├── GITHUB_ORGANIZATION_PLAN.md          # Repository design plan
-│   ├── EXECUTION_SUMMARY.md                 # Quick reference
-│   └── PROGRESS_STATUS.md                   # Development status
-│
-├── configs/                                  # Configuration files
-│   ├── architectures.yaml                    # Model configurations
-│   ├── hyperparameters.yaml                 # Training settings
-│   ├── augmentation.yaml                    # Data augmentation
-│   └── ensemble_configs/                    # 51 ensemble configs
-│
-├── launch_scripts/                          # Training automation
-│   ├── launch_single_model.sh
-│   ├── launch_5fold_training.sh
-│   ├── launch_parallel_training.sh
-│   └── monitor_training.sh
-│
-├── tests/                                   # Unit tests
-│   ├── test_preprocessing.py
-│   ├── test_models.py
-│   └── test_inference.py
-│
-├── models/                                  # Saved checkpoints (gitignored)
-├── logs/                                    # Training logs (gitignored)
-├── results/                                 # Predictions & metrics (gitignored)
-└── data/                                    # Dataset (gitignored)
-    ├── raw/                                 # Original DICOM files
-    ├── volumes_nifti/                       # Converted NIfTI volumes
-    ├── patches_roi/                         # Extracted 64³ patches
-    ├── cv_splits/                           # 5-fold CV indices
-    └── train_labels_14class.csv             # Multi-label annotations
++-- README.md # This file
++-- PROGRESS_STATUS.md # Development tracking
++-- requirements.txt # Python dependencies
++-- .gitignore # Git ignore rules
+|
++-- scripts/ # Sequential pipeline scripts
+| +-- 01_dicom_to_volume.py # DICOM -> NIfTI conversion
+| +-- 02_create_roi_patches.py # Extract 64^3 ROI patches
+| +-- 03_create_cv_splits.py # Generate 5-fold CV splits
+| +-- 04_train_model.py # Main training script (21 architectures)
+| +-- 05_ensemble_inference.py # Ensemble prediction
+| +-- 06_inference_with_tta.py # Test-time augmentation
+| +-- 07_run_full_pipeline.sh # Full pipeline automation
+| |
+| +-- utils/ # Modular utilities
+| +-- architectures.py # Model definitions
+| +-- data_loading.py # Dataset & augmentation
+| +-- metrics.py # Training & evaluation
+|
++-- notebooks/ # Jupyter analysis notebooks
+| +-- 01_data_exploration_and_eda.ipynb
+| +-- 02_preprocessing_and_roi_extraction.ipynb
+| +-- 03_architecture_selection_rationale.ipynb
+| +-- 04_training_results_analysis.ipynb
+| +-- 05_ensemble_strategy_design.ipynb
+| +-- 06_ensemble_evaluation_results.ipynb
+|
++-- docs/ # Comprehensive documentation
+| +-- MODEL_DATABASE.md # All 105 model results
+| +-- ENSEMBLE_RESULTS.md # 51 ensemble experiments
+| +-- GITHUB_ORGANIZATION_PLAN.md # Repository design plan
+| +-- EXECUTION_SUMMARY.md # Quick reference
+| +-- PROGRESS_STATUS.md # Development status
+|
++-- configs/ # Configuration files
+| +-- architectures.yaml # Model configurations
+| +-- hyperparameters.yaml # Training settings
+| +-- augmentation.yaml # Data augmentation
+| +-- ensemble_configs/ # 51 ensemble configs
+|
++-- launch_scripts/ # Training automation
+| +-- launch_single_model.sh
+| +-- launch_5fold_training.sh
+| +-- launch_parallel_training.sh
+| +-- monitor_training.sh
+|
++-- tests/ # Unit tests
+| +-- test_preprocessing.py
+| +-- test_models.py
+| +-- test_inference.py
+|
++-- models/ # Saved checkpoints (gitignored)
++-- logs/ # Training logs (gitignored)
++-- results/ # Predictions & metrics (gitignored)
++-- data/ # Dataset (gitignored)
+ +-- raw/ # Original DICOM files
+ +-- volumes_nifti/ # Converted NIfTI volumes
+ +-- patches_roi/ # Extracted 64^3 patches
+ +-- cv_splits/ # 5-fold CV indices
+ +-- train_labels_14class.csv # Multi-label annotations
 ```
 
 ## Pipeline Execution
@@ -229,9 +229,9 @@ rsna_github/
 
 ```bash
 python scripts/01_dicom_to_volume.py \
-    --dicom-dir data/raw/train_images \
-    --output-dir data/volumes_nifti \
-    --num-workers 16
+ --dicom-dir data/raw/train_images \
+ --output-dir data/volumes_nifti \
+ --num-workers 16
 ```
 
 **Output**: ~4,348 NIfTI volumes with preserved spatial metadata
@@ -240,23 +240,23 @@ python scripts/01_dicom_to_volume.py \
 
 ```bash
 python scripts/02_create_roi_patches.py \
-    --nifti-dir data/volumes_nifti \
-    --output-dir data/patches_roi \
-    --patch-size 64 \
-    --window-min -100 \
-    --window-max 300
+ --nifti-dir data/volumes_nifti \
+ --output-dir data/patches_roi \
+ --patch-size 64 \
+ --window-min -100 \
+ --window-max 300
 ```
 
-**Output**: 64×64×64 voxel patches centered on brain tissue, z-score normalized
+**Output**: 64x64x64 voxel patches centered on brain tissue, z-score normalized
 
 #### Step 3: Cross-Validation Split Generation
 
 ```bash
 python scripts/03_create_cv_splits.py \
-    --labels-csv data/train_labels_14class.csv \
-    --output-dir data/cv_splits \
-    --n-folds 5 \
-    --seed 42
+ --labels-csv data/train_labels_14class.csv \
+ --output-dir data/cv_splits \
+ --n-folds 5 \
+ --seed 42
 ```
 
 **Output**: Stratified 5-fold splits ensuring balanced positive/negative ratios
@@ -266,16 +266,16 @@ python scripts/03_create_cv_splits.py \
 ```bash
 # Single model training
 python scripts/04_train_model.py \
-    --data-dir data/patches_roi \
-    --labels-csv data/train_labels_14class.csv \
-    --cv-dir data/cv_splits \
-    --fold 0 \
-    --arch seresnet18_stable \
-    --batch-size 12 \
-    --lr 0.0005 \
-    --epochs 50 \
-    --patience 15 \
-    --output models/fold0_seresnet18_stable
+ --data-dir data/patches_roi \
+ --labels-csv data/train_labels_14class.csv \
+ --cv-dir data/cv_splits \
+ --fold 0 \
+ --arch seresnet18_stable \
+ --batch-size 12 \
+ --lr 0.0005 \
+ --epochs 50 \
+ --patience 15 \
+ --output models/fold0_seresnet18_stable
 ```
 
 **Supported Architectures**:
@@ -292,31 +292,31 @@ python scripts/04_train_model.py \
 ```bash
 # Production-ready ensemble (6 models, weighted)
 python scripts/05_ensemble_inference.py \
-    --config-id META_E_top3_weighted \
-    --method weighted \
-    --models \
-        models/fold0_seresnet10_p64/best_model.pth \
-        models/fold0_seresnet34_p64/best_model.pth \
-        models/fold0_seresnet18_stable_bs12_lr0005/best_model.pth \
-        models/fold1_seresnet34_p64/best_model.pth \
-        models/fold1_seresnet18_p64/best_model.pth \
-        models/fold3_seresnet18_p64/best_model.pth \
-    --weights 2.5862 2.5862 1.7243 1.7243 1.7243 0.8619 \
-    --val-dir data/patches_roi \
-    --val-csv data/train_labels_14class.csv \
-    --output results/ensemble_predictions.csv
+ --config-id META_E_top3_weighted \
+ --method weighted \
+ --models \
+ models/fold0_seresnet10_p64/best_model.pth \
+ models/fold0_seresnet34_p64/best_model.pth \
+ models/fold0_seresnet18_stable_bs12_lr0005/best_model.pth \
+ models/fold1_seresnet34_p64/best_model.pth \
+ models/fold1_seresnet18_p64/best_model.pth \
+ models/fold3_seresnet18_p64/best_model.pth \
+ --weights 2.5862 2.5862 1.7243 1.7243 1.7243 0.8619 \
+ --val-dir data/patches_roi \
+ --val-csv data/train_labels_14class.csv \
+ --output results/ensemble_predictions.csv
 ```
 
 #### Step 6: Test-Time Augmentation (Optional)
 
 ```bash
 python scripts/06_inference_with_tta.py \
-    --model models/fold0_seresnet18_stable_bs12_lr0005/best_model.pth \
-    --arch seresnet18_stable \
-    --val-dir data/patches_roi \
-    --val-csv data/train_labels_14class.csv \
-    --tta-count 4 \
-    --output results/tta_predictions.csv
+ --model models/fold0_seresnet18_stable_bs12_lr0005/best_model.pth \
+ --arch seresnet18_stable \
+ --val-dir data/patches_roi \
+ --val-csv data/train_labels_14class.csv \
+ --tta-count 4 \
+ --output results/tta_predictions.csv
 ```
 
 **Note**: TTA=4 provides minimal benefit (+0.06%) with 4x slower inference. Skip for production.
@@ -343,17 +343,17 @@ tail -f logs/train_fold0_seresnet18_stable.log
 All 105 models were trained locally across two workstations:
 
 **Main Workstation**:
-- **GPUs**: 2× NVIDIA RTX 5090 (32GB VRAM each)
+- **GPUs**: 2x NVIDIA RTX 5090 (32GB VRAM each)
 - **CPU**: AMD/Intel multi-core (16+ threads)
 - **RAM**: 128GB
-- **Storage**: 4TB NVMe SSD (2× 2TB WD Black SN850X in RAID 0)
+- **Storage**: 4TB NVMe SSD (2x 2TB WD Black SN850X in RAID 0)
 - **OS**: Ubuntu 22.04 LTS
 
 **Secondary PC**:
-- **GPUs**: 1× NVIDIA RTX 3090 Ti (24GB VRAM) + 1× RTX 3090 (24GB VRAM)
+- **GPUs**: 1x NVIDIA RTX 3090 Ti (24GB VRAM) + 1x RTX 3090 (24GB VRAM)
 - **Total Training GPUs**: 4
 
-This multi-GPU setup enabled parallel training of different architectures across the 21-architecture × 5-fold experimental space.
+This multi-GPU setup enabled parallel training of different architectures across the 21-architecture x 5-fold experimental space.
 
 ### Minimum Requirements
 
@@ -377,29 +377,29 @@ This multi-GPU setup enabled parallel training of different architectures across
 ### SE-ResNet18 Stable (Best Model)
 
 ```
-Input: (1, 64, 64, 64)                    # Single-channel 3D CT patch
-├── Conv3d(1→64, 7×7×7, stride=2)        # Initial feature extraction
-├── BatchNorm3d + ReLU + MaxPool3d
-│
-├── Layer1: 2 × SE-BasicBlock(64→64)     # Spatial size: 16×16×16
-├── Layer2: 2 × SE-BasicBlock(64→128, stride=2)   # 8×8×8
-├── Layer3: 2 × SE-BasicBlock(128→256, stride=2)  # 4×4×4
-├── Layer4: 2 × SE-BasicBlock(256→512, stride=2)  # 2×2×2
-│
-├── AdaptiveAvgPool3d → (512, 1, 1, 1)
-├── Flatten → (512,)
-└── Linear(512→14) → Multi-label output
+Input: (1, 64, 64, 64) # Single-channel 3D CT patch
++-- Conv3d(1->64, 7x7x7, stride=2) # Initial feature extraction
++-- BatchNorm3d + ReLU + MaxPool3d
+|
++-- Layer1: 2 x SE-BasicBlock(64->64) # Spatial size: 16x16x16
++-- Layer2: 2 x SE-BasicBlock(64->128, stride=2) # 8x8x8
++-- Layer3: 2 x SE-BasicBlock(128->256, stride=2) # 4x4x4
++-- Layer4: 2 x SE-BasicBlock(256->512, stride=2) # 2x2x2
+|
++-- AdaptiveAvgPool3d -> (512, 1, 1, 1)
++-- Flatten -> (512,)
++-- Linear(512->14) -> Multi-label output
 ```
 
 **SE-BasicBlock**:
 ```
 Input: x
-├── Conv3d(3×3×3) → BN → ReLU → Conv3d(3×3×3) → BN
-├── Squeeze-and-Excitation:
-│   ├── Global average pooling → (C,)
-│   ├── FC(C→C/16) → ReLU → FC(C/16→C) → Sigmoid
-│   └── Channel-wise multiplication
-└── Residual connection: x + SE(Conv(x))
++-- Conv3d(3x3x3) -> BN -> ReLU -> Conv3d(3x3x3) -> BN
++-- Squeeze-and-Excitation:
+| +-- Global average pooling -> (C,)
+| +-- FC(C->C/16) -> ReLU -> FC(C/16->C) -> Sigmoid
+| +-- Channel-wise multiplication
++-- Residual connection: x + SE(Conv(x))
 ```
 
 **Parameters**: ~11M
@@ -411,17 +411,17 @@ Medical-appropriate 3D augmentations that preserve anatomical validity:
 
 ```python
 VolumeAugmentation(
-    rotation_range=15,        # ±15° (preserves anatomy)
-    flip=True,                # All axes (valid for brain)
-    zoom_range=(0.9, 1.1),    # Conservative zoom
-    shift_range=0.1,          # ±10% translation
-    brightness_range=0.2,     # ±20% intensity
-    contrast_range=0.2        # ±20% contrast
+ rotation_range=15, # +/-15 degrees (preserves anatomy)
+ flip=True, # All axes (valid for brain)
+ zoom_range=(0.9, 1.1), # Conservative zoom
+ shift_range=0.1, # +/-10% translation
+ brightness_range=0.2, # +/-20% intensity
+ contrast_range=0.2 # +/-20% contrast
 )
 ```
 
 **Rationale**:
-- Rotations limited to ±15° to avoid unrealistic anatomical positions
+- Rotations limited to +/-15 degrees to avoid unrealistic anatomical positions
 - All flips valid (bilateral symmetry of brain)
 - Conservative zoom to preserve vascular structure scale
 - Intensity augmentations account for scanner/protocol variations
@@ -438,15 +438,15 @@ num_classes: 14
 
 # Optimization
 optimizer: Adam
-learning_rate: 0.0005      # Optimal (0.001 causes instability)
+learning_rate: 0.0005 # Optimal (0.001 causes instability)
 weight_decay: 1e-4
 lr_scheduler: CosineAnnealingLR
 min_lr: 1e-6
 
 # Training
-batch_size: 12             # Optimal for SE-ResNet18
+batch_size: 12 # Optimal for SE-ResNet18
 epochs: 50
-patience: 15               # Early stopping
+patience: 15 # Early stopping
 gradient_clip: 1.0
 
 # Data
@@ -456,11 +456,11 @@ pin_memory: true
 
 # Loss
 criterion: BCEWithLogitsLoss
-class_weights: computed    # From training set distribution
+class_weights: computed # From training set distribution
 label_smoothing: 0.0
 
 # Precision
-mixed_precision: true      # FP16 for faster training
+mixed_precision: true # FP16 for faster training
 ```
 
 ### Class Weights
@@ -494,16 +494,16 @@ Computed from training set to handle class imbalance:
 
 ```bash
 python scripts/05_ensemble_inference.py \
-    --config-id META_E_top3_weighted \
-    --method weighted \
-    --models \
-        models/fold0_seresnet10_p64/best_model.pth \
-        models/fold0_seresnet34_p64/best_model.pth \
-        models/fold0_seresnet18_stable_bs12_lr0005/best_model.pth \
-        models/fold1_seresnet34_p64/best_model.pth \
-        models/fold1_seresnet18_p64/best_model.pth \
-        models/fold3_seresnet18_p64/best_model.pth \
-    --weights 2.5862 2.5862 1.7243 1.7243 1.7243 0.8619
+ --config-id META_E_top3_weighted \
+ --method weighted \
+ --models \
+ models/fold0_seresnet10_p64/best_model.pth \
+ models/fold0_seresnet34_p64/best_model.pth \
+ models/fold0_seresnet18_stable_bs12_lr0005/best_model.pth \
+ models/fold1_seresnet34_p64/best_model.pth \
+ models/fold1_seresnet18_p64/best_model.pth \
+ models/fold3_seresnet18_p64/best_model.pth \
+ --weights 2.5862 2.5862 1.7243 1.7243 1.7243 0.8619
 ```
 
 **Pros**: Most robust, 6 diverse models, meta-ensemble stability
@@ -515,14 +515,14 @@ python scripts/05_ensemble_inference.py \
 
 ```bash
 python scripts/05_ensemble_inference.py \
-    --config-id E5_005_seresnet5 \
-    --method mean \
-    --models \
-        models/fold0_seresnet10_p64/best_model.pth \
-        models/fold0_seresnet34_p64/best_model.pth \
-        models/fold0_seresnet18_stable_bs12_lr0005/best_model.pth \
-        models/fold1_seresnet34_p64/best_model.pth \
-        models/fold1_seresnet18_p64/best_model.pth
+ --config-id E5_005_seresnet5 \
+ --method mean \
+ --models \
+ models/fold0_seresnet10_p64/best_model.pth \
+ models/fold0_seresnet34_p64/best_model.pth \
+ models/fold0_seresnet18_stable_bs12_lr0005/best_model.pth \
+ models/fold1_seresnet34_p64/best_model.pth \
+ models/fold1_seresnet18_p64/best_model.pth
 ```
 
 **Pros**: Simple mean, excellent performance, 5 models
@@ -534,12 +534,12 @@ python scripts/05_ensemble_inference.py \
 
 ```bash
 python scripts/05_ensemble_inference.py \
-    --config-id E3_004_seresnet_only \
-    --method mean \
-    --models \
-        models/fold0_seresnet10_p64/best_model.pth \
-        models/fold0_seresnet34_p64/best_model.pth \
-        models/fold0_seresnet18_stable_bs12_lr0005/best_model.pth
+ --config-id E3_004_seresnet_only \
+ --method mean \
+ --models \
+ models/fold0_seresnet10_p64/best_model.pth \
+ models/fold0_seresnet34_p64/best_model.pth \
+ models/fold0_seresnet18_stable_bs12_lr0005/best_model.pth
 ```
 
 **Pros**: Only 3 models (2x faster), all fold 0 (easy deployment)
@@ -568,7 +568,7 @@ torch.backends.cudnn.benchmark = False
 ### Cross-Validation
 
 Stratified 5-fold CV with:
-- Balanced label distribution across folds (±2% tolerance)
+- Balanced label distribution across folds (+/-2% tolerance)
 - Patient-level splitting (no data leakage)
 - Seeded random state for reproducible splits
 
@@ -594,12 +594,12 @@ If you use this code or findings in your research, please cite:
 
 ```bibtex
 @misc{dalbey2025rsna_aneurysm,
-  title={RSNA 2025 Intracranial Aneurysm Detection: Comprehensive Deep Learning Pipeline},
-  author={Dalbey, Glenn},
-  year={2025},
-  publisher={GitHub},
-  url={https://github.com/XxRemsteelexX/RSNA-Intracranial-Aneurysm-Detection-Kaggle},
-  note={Best AUC: 0.8624 (ensemble), 0.8585 (single model)}
+ title={RSNA 2025 Intracranial Aneurysm Detection: Comprehensive Deep Learning Pipeline},
+ author={Dalbey, Glenn},
+ year={2025},
+ publisher={GitHub},
+ url={https://github.com/XxRemsteelexX/RSNA-Intracranial-Aneurysm-Detection-Kaggle},
+ note={Best AUC: 0.8624 (ensemble), 0.8585 (single model)}
 }
 ```
 
@@ -616,11 +616,11 @@ MIT License - see [LICENSE](LICENSE) for details
 
 ## Author's Note
 
-This was my first Kaggle competition. I trained 105 models and tested 51 ensemble configurations locally on my hardware: 2× NVIDIA RTX 5090 GPUs on my main workstation and an additional RTX 3090 Ti + RTX 3090 on my second PC.
+This was my first Kaggle competition. I trained 105 models and tested 51 ensemble configurations locally on my hardware: 2x NVIDIA RTX 5090 GPUs on my main workstation and an additional RTX 3090 Ti + RTX 3090 on my second PC.
 
-Unfortunately, I didn't realize that submissions had to be made 24 hours before the competition deadline—you can only select from previously submitted models during the final day. Despite not being able to submit my final results, this work represents a comprehensive exploration of 3D medical imaging.
+Unfortunately, I didn't realize that submissions had to be made 24 hours before the competition deadline--you can only select from previously submitted models during the final day. Despite not being able to submit my final results, this work represents a comprehensive exploration of 3D medical imaging.
 
-The key finding—that smaller models significantly outperform larger ones on limited medical imaging datasets—emerged from methodically testing the hypothesis that SOTA large models would work best, documenting their failures, and iterating toward simpler solutions. Sometimes the best discoveries come from what doesn't work.
+The key finding--that smaller models significantly outperform larger ones on limited medical imaging datasets--emerged from methodically testing the hypothesis that SOTA large models would work best, documenting their failures, and iterating toward simpler solutions. Sometimes the best discoveries come from what doesn't work.
 
 ## Contact
 

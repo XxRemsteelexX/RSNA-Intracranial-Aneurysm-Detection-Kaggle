@@ -7,13 +7,13 @@
 
 ---
 
-## 🏆 TOP 10 MODELS (Sorted by AUC)
+## TOP 10 MODELS (Sorted by AUC)
 
 | Rank | Model | AUC | Batch Size | Notes |
 |------|-------|-----|------------|-------|
-| 1 | **SE-ResNet18 Stable** | **0.8585** | 12 | LR=0.0005, patience=15 ⭐ BEST |
+| 1 | **SE-ResNet18 Stable** | **0.8585** | 12 | LR=0.0005, patience=15 BEST BEST |
 | 2 | SE-ResNet18 | 0.8551 | 8 | Original, LR=0.001 |
-| 3 | ConvNeXt-Large fine-tuned | 0.8540 | 2 | Frozen → fine-tuned |
+| 3 | ConvNeXt-Large fine-tuned | 0.8540 | 2 | Frozen -> fine-tuned |
 | 4 | SE-ResNet34 | 0.8538 | 8 | |
 | 5 | SE-ResNet50 | 0.8528 | 4 | |
 | 6 | DenseNet-121 | 0.8514 | 8 | Full training |
@@ -24,17 +24,17 @@
 
 ---
 
-## 📊 ALL MODELS BY ARCHITECTURE FAMILY
+## ALL MODELS BY ARCHITECTURE FAMILY
 
-### SE-ResNet Family (Best Overall!) 🥇
+### SE-ResNet Family (Best Overall!) #1
 | Model | AUC | Batch Size | LR | Status |
 |-------|-----|------------|-----|--------|
-| **SE-ResNet18 Stable** | **0.8585** | 12 | 0.0005 | ✅ BEST |
-| SE-ResNet18 | 0.8551 | 8 | 0.001 | ✅ |
-| SE-ResNet34 | 0.8538 | 8 | 0.001 | ✅ |
-| SE-ResNet50 | 0.8528 | 4 | 0.001 | ✅ |
-| SE-ResNet14 | 0.8457 | 8 | 0.001 | ✅ |
-| SE-ResNet10 | ? | 8 | 0.001 | 🔄 Training (Epoch 13/50) |
+| **SE-ResNet18 Stable** | **0.8585** | 12 | 0.0005 | OK BEST |
+| SE-ResNet18 | 0.8551 | 8 | 0.001 | OK |
+| SE-ResNet34 | 0.8538 | 8 | 0.001 | OK |
+| SE-ResNet50 | 0.8528 | 4 | 0.001 | OK |
+| SE-ResNet14 | 0.8457 | 8 | 0.001 | OK |
+| SE-ResNet10 | ? | 8 | 0.001 | IN PROGRESS Training (Epoch 13/50) |
 
 **Key Finding**: Smaller SE-ResNet models perform BETTER! SE-ResNet18 is the sweet spot - SE-ResNet14 drops to 0.8457.
 
@@ -97,14 +97,14 @@
 ### ConvNeXt Family (Transformers)
 | Model | AUC | Batch Size | Strategy |
 |-------|-----|------------|----------|
-| ConvNeXt-Large fine-tuned | 0.8540 | 2 | Frozen → fine-tune |
+| ConvNeXt-Large fine-tuned | 0.8540 | 2 | Frozen -> fine-tune |
 | ConvNeXt-Large frozen | 0.8419 | 2 | Frozen only |
 | ConvNeXt-Tiny frozen | 0.8378 | 4 | Frozen only |
 | ConvNeXt-XLarge frozen | 0.8340 | 16 | Frozen only |
 | ConvNeXt | 0.6740 | 4 | From scratch |
 
 **Key Finding**:
-- MUST use frozen → fine-tuning strategy
+- MUST use frozen -> fine-tuning strategy
 - Training from scratch = catastrophic failure (0.6740)
 - Large variant best for frozen, fine-tuning gives +1.2% boost
 
@@ -134,7 +134,7 @@
 
 ---
 
-## 🔑 KEY INSIGHTS & PATTERNS
+## KEY INSIGHTS & PATTERNS
 
 ### 1. **SMALLER IS BETTER** (Most Important Finding!)
 For CNNs trained from scratch on this dataset:
@@ -143,7 +143,7 @@ For CNNs trained from scratch on this dataset:
 - EfficientNet-B0 (0.8492) > B2 (0.8472) > B4 (0.8428) > B7 (0.6670)
 - ResNet-18 (0.8498) > ResNet-34 (0.8365)
 
-**Why?** ~4,000 training samples insufficient for large models → overfitting
+**Why?** ~4,000 training samples insufficient for large models -> overfitting
 
 ### 2. **SE Blocks Are Critical**
 - SE-ResNet18 (0.8585) vs ResNet-18 (0.8498) = **+8.7% improvement**
@@ -154,7 +154,7 @@ For CNNs trained from scratch on this dataset:
 |------------|---------------|-------------|
 | Small CNNs (18-34 layers) | Train from scratch | 0.85-0.86 |
 | Large CNNs (50+ layers) | Train from scratch (worse) | 0.85 |
-| Large Transformers | Frozen → Fine-tune | 0.84-0.85 |
+| Large Transformers | Frozen -> Fine-tune | 0.84-0.85 |
 | Small Transformers | Don't use | 0.54-0.65 |
 
 ### 4. **Hyperparameter Impact**
@@ -166,7 +166,7 @@ For CNNs trained from scratch on this dataset:
 | Augmentation | Essential (always enabled) |
 
 ### 5. **Model Families Ranked**
-1. **SE-ResNet**: 0.8528-0.8585 (BEST) 🥇
+1. **SE-ResNet**: 0.8528-0.8585 (BEST) #1
 2. **DenseNet**: 0.8430-0.8514
 3. **Standard ResNet**: 0.8349-0.8498
 4. **EfficientNet**: 0.6670-0.8492
@@ -179,7 +179,7 @@ For CNNs trained from scratch on this dataset:
 
 ---
 
-## ❌ MODELS THAT FAILED
+## SKIP MODELS THAT FAILED
 
 ### Complete Training Collapse (AUC < 0.70)
 - **EfficientNet-B7**: 0.6670 (too large, OOM issues)
@@ -196,7 +196,7 @@ For CNNs trained from scratch on this dataset:
 
 ---
 
-## 🎯 RECOMMENDED MODELS FOR PRODUCTION
+## RECOMMENDED MODELS FOR PRODUCTION
 
 ### Single Model (Best)
 **SE-ResNet18 Stable** (0.8585)
@@ -216,7 +216,7 @@ For CNNs trained from scratch on this dataset:
 
 ---
 
-## 📈 NEXT STEPS
+## NEXT STEPS
 
 ### Currently Training
 - [x] SE-ResNet14 - COMPLETED: 0.8457 (below SE-ResNet18)
@@ -239,7 +239,7 @@ For CNNs trained from scratch on this dataset:
 
 ---
 
-## 📝 STATISTICS
+## STATISTICS
 
 - **Total models trained**: 53+ on fold 0
 - **Best AUC achieved**: 0.8585 (SE-ResNet18 Stable)

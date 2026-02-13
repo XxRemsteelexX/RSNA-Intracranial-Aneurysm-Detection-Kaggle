@@ -1628,7 +1628,7 @@ def main():
             best_auc = val_auc
             torch.save(model.state_dict(), output_dir / 'best_model.pth')
             patience_counter = 0
-            print(f"✓ New best AUC: {best_auc:.4f}")
+            print(f"- New best AUC: {best_auc:.4f}")
         else:
             patience_counter += 1
 

@@ -40,7 +40,7 @@ class VolumeAugmentation:
     3D volume augmentation for medical imaging.
 
     Implements medical-appropriate augmentations:
-    - Rotations: Small angles (±15°) to preserve anatomy
+    - Rotations: Small angles (+/-15 degrees) to preserve anatomy
     - Flips: All axes (anatomically valid)
     - Zoom: Conservative range (0.9-1.1x)
     - Shifts: Small translations
@@ -271,7 +271,7 @@ class PatchDataset(Dataset):
         if self.transform:
             patch = self.transform(patch)
 
-        # Add channel dimension: (D, H, W) → (1, D, H, W)
+        # Add channel dimension: (D, H, W) -> (1, D, H, W)
         patch = patch[np.newaxis, ...]
 
         # Get labels
